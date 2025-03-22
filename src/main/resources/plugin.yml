@@ -1,0 +1,7 @@
+name: RcCore
+version: '0.1.0-beta'
+main: net.azisaba.rccore.RcCore
+api-version: '1.21'
+authors:
+  - sysnote8
+description: Core plugin for rcpve
