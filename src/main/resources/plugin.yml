@@ -4,4 +4,6 @@ main: net.azisaba.rccore.RcCore
 api-version: '1.21'
 authors:
   - sysnote8
+depend:
+  - AuctionHouse
 description: Core plugin for rcpve
