@@ -1,6 +1,6 @@
 package net.azisaba.rccore.integration.auctionhouse;
 
-import com.spawnchunk.auctionhouse.events.ListItemEvent;
+import com.badbones69.crazyauctions.api.events.AuctionListEvent;
 import net.azisaba.rccore.config.IntegrationConfig;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MarketEventListener implements Listener {
     @EventHandler
-    public void onListNewItem(ListItemEvent event) {
+    public void onListNewItem(AuctionListEvent event) {
         List<Component> loreList = event.getItem().lore();
         if (loreList == null) return;
 

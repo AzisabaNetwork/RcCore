@@ -18,7 +18,7 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
 
-    compileOnly(files("libs/AuctionHouse-1.20.4-3.7.1.jar"))
+    compileOnly(files("libs/CrazyAuctions-1.7-custom.jar"))
 }
 
 val targetJavaVersion = 21
