@@ -1,3 +1,29 @@
 marketDenyItemLore:
   - Unsellable Item
   - 取引禁止
+
+slotSetting:
+  left:
+    name: Left Stick
+    lore:
+      - Left Stick
+    on_click:
+      default: /me default left!!
+      worlds:
+        worldA: /me hello left
+  middle:
+    name: Middle Stick
+    lore:
+      - Middle Stick
+    on_click:
+      default: /me default middle!!
+      worlds:
+        worldA: /me hello middle
+  right:
+    name: Left Stick
+    lore:
+      - Left Stick
+    on_click:
+      default: /me default right!!
+      worlds:
+        worldA: /me hello right
