@@ -33,7 +33,7 @@ class HotbarLockListener : Listener {
 
     @EventHandler
     fun onInventoryClick(e: InventoryClickEvent) {
-        if (e.clickedInventory !is PlayerInventory) {
+        if (e.clickedInventory !is PlayerInventory || !needsLockSlot(e.whoClicked.gameMode)) {
             return
         }
 
@@ -44,7 +44,7 @@ class HotbarLockListener : Listener {
 
     @EventHandler
     fun onInventoryDrag(e: InventoryDragEvent) {
-        if (e.inventory !is PlayerInventory) {
+        if (e.inventory !is PlayerInventory || !needsLockSlot(e.whoClicked.gameMode)) {
             return
         }
 
@@ -57,6 +57,7 @@ class HotbarLockListener : Listener {
 
     @EventHandler
     fun onPlayerInteract(e: PlayerInteractEvent) {
+        if(!needsLockSlot(e.player.gameMode)) return
         val player = e.player
         val itemSlot = player.inventory.heldItemSlot
         if(6 <= itemSlot && itemSlot <= 8) {
