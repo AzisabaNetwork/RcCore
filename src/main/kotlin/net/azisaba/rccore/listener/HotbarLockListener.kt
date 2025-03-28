@@ -13,6 +13,7 @@ import org.bukkit.event.inventory.InventoryDragEvent
 import org.bukkit.event.player.PlayerGameModeChangeEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerSwapHandItemsEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.PlayerInventory
 
@@ -24,14 +25,14 @@ class HotbarLockListener : Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     fun onGameModeChange(e: PlayerGameModeChangeEvent) {
         if (needsLockSlot(e.newGameMode)) {
             setLeftSideSlot(e.player.inventory)
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     fun onInventoryClick(e: InventoryClickEvent) {
         if (e.clickedInventory !is PlayerInventory || !needsLockSlot(e.whoClicked.gameMode)) {
             return
@@ -42,7 +43,7 @@ class HotbarLockListener : Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     fun onInventoryDrag(e: InventoryDragEvent) {
         if (e.inventory !is PlayerInventory || !needsLockSlot(e.whoClicked.gameMode)) {
             return
@@ -55,7 +56,7 @@ class HotbarLockListener : Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     fun onPlayerInteract(e: PlayerInteractEvent) {
         if(!needsLockSlot(e.player.gameMode)) return
         val player = e.player
@@ -68,6 +69,15 @@ class HotbarLockListener : Listener {
                     Component.text("ツールが使用できませんでした。運営にお問い合わせください。").color(NamedTextColor.RED)
                 )
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    fun onHandItemSwap(event: PlayerSwapHandItemsEvent) {
+        if(!needsLockSlot(event.player.gameMode)) return
+        val heldItemSlot = event.player.inventory.heldItemSlot
+        if(6 <= heldItemSlot && heldItemSlot <= 8) {
+            event.isCancelled = true
         }
     }
 
